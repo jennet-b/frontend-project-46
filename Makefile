@@ -9,3 +9,5 @@ test-coverage:
 
 test:
 	npm test
+
+.PHONY: test
