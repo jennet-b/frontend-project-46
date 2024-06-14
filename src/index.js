@@ -3,15 +3,17 @@ import path from 'path';
 import _ from 'lodash';
 import parse from './parsers.js';
 
-export const readFile = (filepath) => {
-  const fullPath = path.resolve(process.cwd(), filepath);
-  const data = fs.readFileSync(fullPath, 'utf-8');
-  return data;
-};
+const buildFullPath = (filePath) => path.resolve(process.cwd(), filePath);
+
+const readFile = (fullPath) => fs.readFileSync(fullPath, 'UTF-8');
+
+const getFileFormat = (filePath) => path.extname(filePath).slice(1);
 
 const genDiff = (filepath1, filepath2) => {
-  const data1 = parse(filepath1);
-  const data2 = parse(filepath2);
+  const fileData1 = readFile(buildFullPath(filepath1));
+  const fileData2 = readFile(buildFullPath(filepath2));
+  const data1 = parse(fileData1, getFileFormat(filepath1));
+  const data2 = parse(fileData2, getFileFormat(filepath2));
   const keys1 = Object.keys(data1);
   const keys2 = Object.keys(data2);
   const keys = _.union(keys1, keys2);
@@ -36,3 +38,4 @@ const genDiff = (filepath1, filepath2) => {
 };
 
 export default genDiff;
+export { readFile, buildFullPath, getFileFormat };

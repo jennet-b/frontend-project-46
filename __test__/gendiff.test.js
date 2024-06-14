@@ -21,8 +21,17 @@ const expectedDiff = `{
 const file1 = 'file1.json';
 const file2 = 'file2.json';
 
+const filepath1 = 'file1.yaml';
+const filepath12 = 'file2.yml';
+
 test('genDiff', () => {
   const data1 = getFixturePath(file1);
   const data2 = getFixturePath(file2);
+  expect(genDiff(data1, data2)).toEqual(expectedDiff);
+});
+
+test('genDiff', () => {
+  const data1 = getFixturePath(filepath1);
+  const data2 = getFixturePath(filepath12);
   expect(genDiff(data1, data2)).toEqual(expectedDiff);
 });
