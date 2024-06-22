@@ -9,3 +9,6 @@
 
 ### Сравнение плоских файлов (yaml)
 [![asciicast](https://asciinema.org/a/rNdLwkM0G4Lwx5M3ZSoSR0I47.svg)](https://asciinema.org/a/rNdLwkM0G4Lwx5M3ZSoSR0I47)
+
+### Сравнение вложенных структур
+[![asciicast](https://asciinema.org/a/05zDtwLCHB7OcF8CDv2OKrLO8.svg)](https://asciinema.org/a/05zDtwLCHB7OcF8CDv2OKrLO8)
