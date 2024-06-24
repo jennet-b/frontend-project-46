@@ -13,5 +13,8 @@
 ### Сравнение вложенных структур
 [![asciicast](https://asciinema.org/a/05zDtwLCHB7OcF8CDv2OKrLO8.svg)](https://asciinema.org/a/05zDtwLCHB7OcF8CDv2OKrLO8)
 
-### Плоский формат
+### Плоский формат plain
 [![asciicast](https://asciinema.org/a/URmKoARtZtTmcFnQ1omiqB0w7.svg)](https://asciinema.org/a/URmKoARtZtTmcFnQ1omiqB0w7)
+
+### Вывод в json
+[![asciicast](https://asciinema.org/a/iLykJolZRAFdrTgRKn93HIIbx.svg)](https://asciinema.org/a/iLykJolZRAFdrTgRKn93HIIbx)
