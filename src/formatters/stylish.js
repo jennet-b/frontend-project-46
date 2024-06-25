@@ -7,16 +7,15 @@ const stringify = (data, depth) => {
   if (!_.isObject(data)) {
     return `${data}`;
   }
-  const lines = Object
-    .entries(data)
-    .map(([key, value]) => `${getIndent(depth)}  ${key}: ${stringify(value, depth + 1)}`);
+  const entries = Object.entries(data);
+  const lines = entries.map(([key, value]) => `${getIndent(depth)}  ${key}: ${stringify(value, depth + 1)}`);
 
   return ['{', ...lines, `${getBracketIndent(depth)}}`].join('\n');
 };
 
 const formatStylish = (tree) => {
   const iter = (node, depth) => {
-    const lines = node.flatMap((data) => {
+    const lines = node.map((data) => {
       const {
         type, key, value, valueBefore, valueAfter, children,
       } = data;
