@@ -2,14 +2,14 @@ import formatStylish from './stylish.js';
 import formatPlain from './plain.js';
 import formatJSON from './json.js';
 
-const chooseFormatters = (filesDif, formatType) => {
+const chooseFormatters = (file, formatType) => {
   switch (formatType) {
     case 'stylish':
-      return (formatStylish(filesDif));
+      return (formatStylish(file));
     case 'plain':
-      return (formatPlain(filesDif));
+      return (formatPlain(file));
     case 'json':
-      return (formatJSON(filesDif));
+      return (formatJSON(file));
     default:
       throw new Error('Unknown format!');
   }

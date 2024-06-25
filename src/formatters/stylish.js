@@ -7,15 +7,16 @@ const stringify = (data, depth) => {
   if (!_.isObject(data)) {
     return `${data}`;
   }
-  const entries = Object.entries(data);
-  const lines = entries.map(([key, value]) => `${getIndent(depth)}  ${key}: ${stringify(value, depth + 1)}`);
+  const lines = Object
+    .entries(data)
+    .map(([key, value]) => `${getIndent(depth)}  ${key}: ${stringify(value, depth + 1)}`);
 
   return ['{', ...lines, `${getBracketIndent(depth)}}`].join('\n');
 };
 
 const formatStylish = (tree) => {
   const iter = (node, depth) => {
-    const lines = node.map((data) => {
+    const lines = node.flatMap((data) => {
       const {
         type, key, value, valueBefore, valueAfter, children,
       } = data;
@@ -37,7 +38,7 @@ const formatStylish = (tree) => {
           return `${getIndent(depth)}  ${key}: ${stringify(value, depth + 1)}`;
         }
         default:
-          throw new Error(`Type ${type} is unknown`);
+          throw new Error('Type is unknown');
       }
     });
     return ['{', ...lines, `${getBracketIndent(depth)}}`].join('\n');

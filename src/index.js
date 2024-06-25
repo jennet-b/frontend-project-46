@@ -6,21 +6,22 @@ import chooseFormatters from './formatters/index.js';
 
 const readFile = (filepath) => {
   const fullpath = path.resolve(process.cwd(), filepath);
-  return fs.readFileSync(fullpath, 'utf-8');
+  return fs.readFileSync(fullpath, 'UTF-8');
 };
 
 const getData = (filepath) => {
   const data = readFile(filepath);
-  const extension = path.extname(filepath).slice(1);
-  return parse(data, extension);
+  const formatFile = path.extname(filepath).slice(1);
+  return parse(data, formatFile);
 };
 
 const buildTree = (obj1, obj2) => {
   const keys1 = Object.keys(obj1);
   const keys2 = Object.keys(obj2);
-  const keys = _.sortBy(_.union(keys1, keys2));
+  const keys = _.union(keys1, keys2);
+  const sortedKeys = keys.sort();
 
-  const astTree = keys.map((key) => {
+  const astTree = sortedKeys.map((key) => {
     if (_.isObject(obj1[key]) && _.isObject(obj2[key])) {
       return { key, type: 'nested', children: buildTree(obj1[key], obj2[key]) };
     }
