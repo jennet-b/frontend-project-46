@@ -11,7 +11,7 @@ const chooseFormatters = (file, formatType) => {
     case 'json':
       return (formatJSON(file));
     default:
-      throw new Error('Unknown format!');
+      throw new Error(`Unknown format: '${formatType}'!`);
   }
 };
 

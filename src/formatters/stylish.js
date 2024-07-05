@@ -37,7 +37,7 @@ const formatStylish = (tree) => {
           return `${getIndent(depth)}  ${key}: ${stringify(value, depth + 1)}`;
         }
         default:
-          throw new Error('Type is unknown');
+          throw new Error(`Type ${type} is unknown `);
       }
     });
     return ['{', ...lines, `${getBracketIndent(depth)}}`].join('\n');
