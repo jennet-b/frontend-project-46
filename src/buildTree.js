@@ -1,13 +1,14 @@
 import _ from 'lodash';
 
+const type = {
+  nested: 'nested',
+  added: 'added',
+  deleted: 'deleted',
+  changed: 'changed',
+  unchanged: 'unchanged',
+};
+
 const buildTree = (obj1, obj2) => {
-  const type = {
-    nested: 'nested',
-    added: 'added',
-    deleted: 'deleted',
-    changed: 'changed',
-    unchanged: 'unchanged',
-  };
   const keys1 = Object.keys(obj1);
   const keys2 = Object.keys(obj2);
   const keys = _.sortBy(_.union(keys1, keys2));
@@ -34,4 +35,5 @@ const buildTree = (obj1, obj2) => {
   return astTree;
 };
 
+export { type };
 export default buildTree;

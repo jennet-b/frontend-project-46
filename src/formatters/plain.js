@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { type } from '../buildTree.js';
 
 const normalize = (value) => {
   if (_.isObject(value)) {
@@ -16,20 +17,20 @@ const formatPlain = (tree) => {
   const iter = (node, path) => {
     const lines = node.flatMap((data) => {
       const {
-        type, key, value, valueBefore, valueAfter, children,
+        type: nodeType, key, value, valueBefore, valueAfter, children,
       } = data;
 
-      switch (type) {
-        case 'nested': {
+      switch (nodeType) {
+        case type.nested: {
           return iter(children, `${path}${key}.`);
         }
-        case 'added': {
+        case type.added: {
           return `Property '${path}${key}' was added with value: ${normalize(value)}`;
         }
-        case 'deleted': {
+        case type.deleted: {
           return `Property '${path}${key}' was removed`;
         }
-        case 'changed': {
+        case type.changed: {
           return `Property '${path}${key}' was updated. From ${normalize(valueBefore)} to ${normalize(valueAfter)}`;
         }
         default:

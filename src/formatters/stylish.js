@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { type } from '../buildTree.js';
 
 const getIndent = (depth, replacer = ' ', spacesCount = 4) => replacer.repeat(depth * spacesCount - 2);
 const getBracketIndent = (depth, replacer = ' ', spacesCount = 4) => replacer.repeat(depth * spacesCount - spacesCount);
@@ -17,27 +18,27 @@ const formatStylish = (tree) => {
   const iter = (node, depth) => {
     const lines = node.map((data) => {
       const {
-        type, key, value, valueBefore, valueAfter, children,
+        type: nodeType, key, value, valueBefore, valueAfter, children,
       } = data;
 
-      switch (type) {
-        case 'nested': {
+      switch (nodeType) {
+        case type.nested: {
           return `${getIndent(depth)}  ${key}: ${iter(children, depth + 1)}`;
         }
-        case 'added': {
+        case type.added: {
           return `${getIndent(depth)}+ ${key}: ${stringify(value, depth + 1)}`;
         }
-        case 'deleted': {
+        case type.deleted: {
           return `${getIndent(depth)}- ${key}: ${stringify(value, depth + 1)}`;
         }
-        case 'changed': {
+        case type.changed: {
           return `${getIndent(depth)}- ${key}: ${stringify(valueBefore, depth + 1)}\n${getIndent(depth)}+ ${key}: ${stringify(valueAfter, depth + 1)}`;
         }
-        case 'unchanged': {
+        case type.unchanged: {
           return `${getIndent(depth)}  ${key}: ${stringify(value, depth + 1)}`;
         }
         default:
-          throw new Error(`Type ${type} is unknown `);
+          throw new Error(`Type ${nodeType} is unknown.`);
       }
     });
     return ['{', ...lines, `${getBracketIndent(depth)}}`].join('\n');
